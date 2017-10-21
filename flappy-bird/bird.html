@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script>
+	window.onload = function(){
+		var nor = 112;
+		var df = 0;
+		var lef = 0;
+		var js = 0;
+		var uparr =	document.getElementsByName("upbar");
+		var downarr = document.getElementsByName("downbar");
+		for(var i = 0;i<6;i++){
+			uparr[i].style.left = (lef+300+i*100) + "px";
+			downarr[i].style.left = (lef+300+i*100) + "px";
+			h = Math.floor(Math.random()*100);
+			uparr[i].style.top = (h-174) + "px";
+			downarr[i].style.top = (h+90) + "px";
+		}
+		timer = setInterval(function(){
+			js += 1.1;
+			nor += js; 
+			bird.style.top = nor+"px";
+			if(nor >= 227||nor <= 0){
+				stop();
+			}
+			if(nor%2 == 0){
+				bottom.style.marginLeft = "0";
+			}
+			if(nor%2 ==1){
+				bottom.style.marginLeft = "-10px";
+			}
+			for(var i = 0;i<6;i++){
+				var u = parseInt(uparr[i].style.left);
+				u -= 5;
+				uparr[i].style.left = u + "px";
+				downarr[i].style.left = u + "px";
+				if(uparr[i].style.left == (-100)+"px"){
+					var u1 = parseInt(uparr[i].style.left);
+					u1 += 600;
+					uparr[i].style.left = u1+"px";
+					downarr[i].style.left = u1+"px";
+					h = Math.floor(Math.random()*150);
+					uparr[i].style.top = (h-174) + "px";
+					downarr[i].style.top = (h+90) + "px";
+				}
+				if(uparr[i].style.left == (90)+"px"){
+					df+=100;
+					defen.innerHTML = df;
+				}
+				if(uparr[i].offsetLeft >= 90&&uparr[i].offsetLeft <= 154){
+					if((bird.offsetLeft + 34 >= uparr[i].offsetLeft)&&(bird.offsetTop <= uparr[i].offsetTop + 174)){
+						stop();
+					}
+					if((bird.offsetLeft + 34 >= uparr[i].offsetLeft)&&(bird.offsetTop >= downarr[i].offsetTop-24)){
+						stop();
+					}
+				}
+				
+			}				
+		},100) 
+	
+	//&&((bird.offsetTop - 24)<=(uparr[i].offsetTop + 319)||(bird.offsetTop-24)<=downarr//[i].offsetTop)
+	//发现BUG请联系叶文康
+	document.onkeyup = function(evt){
+		if(evt.keyCode == "32"){
+			js = 0;
+			nor -= 30;
+			setTimeout(function(){
+				bird.style.transform = "rotate(25deg)"
+			},200);
+			bird.style.transform = "rotate(-25deg)"
+		}		
+	}
+	
+}
+	function stop(){
+		clearInterval(timer);
+		go.style.display = "block";
+		go.innerHTML = "GAME OVER";
+		document.onkeyup = function(evt){
+			if(evt.keyCode == "32"){
+				location.reload();
+			}
+		}
+	}
+</script>
+<style>
+	#back{
+		width:500px;
+		height:300px;
+		margin:100px auto;
+		background:skyblue;
+		position:relative;
+		overflow:hidden;
+	}
+	#go{
+		width:500px;
+		height:300px;
+		position:absolute;
+		left:0;
+		top:0;
+		background:rgba(230,0,27,0.5);
+		z-index:1;
+		display:none;
+		font-size : 50px;
+		color:rgba(250,250,250,0.5);
+		font-width : 900;
+		text-align:center;
+		line-height:300px;
+	}
+	#defen{
+		position:absolute;
+		font-size:20px;
+		color:rgba(250,250,250,0.9);
+		font-weight:900;
+		left:20px;
+		z-index:2;
+	}
+	#bottom{
+		width:510px;
+		height:50px;
+		position:absolute;
+		bottom:0;
+		background:url(images/ground.png);
+		margin-left:-10px;
+		z-index:1;
+		
+	}
+	#bird{
+		width:34px;
+		height:24px;
+		left:120px;
+		top:112px;
+		position:absolute;
+		background:url(images/bird.png);
+	}
+	#up_bar1{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/up_bar1.png);
+	}
+	#down_bar1{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/down_bar1.png);
+		
+	}
+	#up_bar2{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/up_bar1.png);
+	}
+	#down_bar2{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/down_bar1.png);
+	}
+	#up_bar3{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/up_bar1.png);
+	}
+	#down_bar3{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/down_bar1.png);
+	}
+	#up_bar4{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/up_bar1.png);
+	}
+	#down_bar4{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/down_bar1.png);
+	}
+	#up_bar5{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/up_bar1.png);
+	}
+	#down_bar5{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/down_bar1.png);
+	}
+	#up_bar6{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/up_bar1.png);
+	}
+	#down_bar6{
+		width:30px;
+		height:184px;
+		position:absolute;
+		background:url(images/down_bar1.png);
+	}
+</style>
+</head>
+<body>
+	<div id="back">	
+		<div id = "go"></div>
+		<p id = "defen"></p>
+		<div id = "bottom"></div>
+		<div id = "bird"></div>
+		<div id = "up_bar1" name = "upbar"></div>
+		<div id = "down_bar1" name = "downbar"></div>
+		<div id = "up_bar2" name = "upbar"></div>
+		<div id = "down_bar2" name = "downbar"></div>
+		<div id = "up_bar3" name = "upbar"></div>
+		<div id = "down_bar3" name = "downbar"></div>
+		<div id = "up_bar4" name = "upbar"></div>
+		<div id = "down_bar4" name = "downbar"></div>
+		<div id = "up_bar5" name = "upbar"></div>
+		<div id = "down_bar5" name = "downbar"></div>
+		<div id = "up_bar6" name = "upbar"></div>
+		<div id = "down_bar6" name = "downbar"></div>
+	</div>
+</body>
+</html>
